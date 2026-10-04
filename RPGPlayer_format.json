@@ -1,0 +1,61 @@
+{
+    "name": "",
+    "callsign": "",
+    "hp": 0,
+    "level": 0,
+    "is_unconsious": false,
+    "is_stunned": false,
+    "is_immobilized": false,
+    "inventory": [
+        {
+            "item_name": "",
+            "is_limited": false,
+            "uses": 0,
+            "item_description": ""
+        },
+        {
+            "item_name": "",
+            "is_limited": false,
+            "uses": 0,
+            "item_description": ""
+        }
+    ],
+    "learned_talents":[
+        {
+            "talent_name": "",
+            "talent_description": "",
+            "tier": 0
+        },
+        {
+            "talent_name": "",
+            "talent_description": "",
+            "tier": 0
+        }
+    ],
+    "active_mech": {
+        "mech_name": "",
+        "structure": 0,
+        "armor": 0,
+        "evasion": 0,
+        "e_defence": 0,
+        "is_destroyed": false,
+        "is_cascading": false,
+        "installed_weapons":[
+            {
+                "weapon_name": "",
+                "type": "",
+                "damage": 0,
+                "damage_type": "",
+                "range": 0
+            },
+            {
+                "weapon_name": "",
+                "type": "",
+                "damage": 0,
+                "damage_type": "",
+                "range": 0
+            }
+        ]
+    }
+
+}
