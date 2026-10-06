@@ -1,0 +1,61 @@
+{
+    "name": "Rense Haaro",
+    "callsign": "Tumbleweed",
+    "hp": 6,
+    "level": 2,
+    "is_unconsious": false,
+    "is_stunned": false,
+    "is_immobilized": false,
+    "inventory": [
+        {
+            "item_name": "Revolver",
+            "is_limited": true,
+            "uses": 6,
+            "item_description": "Choose a target within range 3 and line of sight, you deal 1 kinetic damage to the target."
+        },
+        {
+            "item_name": "Personal Drone",
+            "is_limited": false,
+            "uses": null,
+            "item_description": "Small, non-combat drones are a common sight in the field. They’re fairly noisy but can fly about half a mile with good maneuverability before losing signal, relaying audio and visual information as they go."
+        }
+    ],
+    "learned_talents":[
+        {
+            "talent_name": "Crack Shot",
+            "talent_description": "Tier 1: As a protocol, you may steady your aim. If you do, you become Immobilized until the start of your next turn but gain +1 Accuracy on all attacks you make with Rifles. \nTier 2: 1/round, while steadying your aim and making a ranged attack with a Rifle, you can attempt to hit a weak point: gain +1 Difficulty on the attack roll, and deal +1d6 bonus damage on a critical hit. \nTier 3: 1/round, when you perform a critical hit with a Rifle while steadying your aim, your target must pass a Hull save or you may choose an additional effect for your attack: \nHeadshot: They only have line of sight to adjacent spaces until the end of their next turn.\nLeg shot: They become Immobilized until the end of their next turn.\nBody shot: They are knocked Prone.",
+            "tier": 3
+        },
+        {
+            "talent_name": "Grease Monkey",
+            "talent_description": "Tier 1:While resting, you can spend 2 Repairs to replenish 1 use of all Limited weapons and systems.\nTier 2:When you STABILIZE, you clear all IMPAIRED, JAMMED, IMMOBILIZED, SLOWED, and LOCK ON conditions that weren’t caused by your own systems, talents, etc.\nTier 3:Once per mission while resting, you can call in a supply drop. You and your allies may replenish 1 use of all Limited weapons and systems and restore 1 Structure. This doesn’t require any Repairs and can be used even if you have reached your Repair Cap.",
+            "tier": 1
+        }
+    ],
+    "active_mech": {
+        "mech_name": "Stray",
+        "structure": 34,
+        "armor": 1,
+        "evasion": 11,
+        "e_defence": 7,
+        "is_destroyed": true,
+        "is_cascading": false,
+        "installed_weapons":[
+            {
+                "weapon_name": "Hand Cannon",
+                "type": "CQB",
+                "damage": 6,
+                "damage_type": "kinetic",
+                "range": 5
+            },
+            {
+                "weapon_name": "Impact Lance",
+                "type": "Melee",
+                "damage": 4,
+                "damage_type": "energy",
+                "range": 1
+            }
+        ]
+    }
+
+}
