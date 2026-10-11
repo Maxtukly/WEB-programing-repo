@@ -17,6 +17,54 @@ program.command('identifyPilot')
         checkAndLog(char.callsign, 'ПОПЕРЕДЖЕННЯ: у записі пілота відсутний позивний');      
     }})
 
+program.command('getInventory')
+.description('повертає список наявних речей персонажа')
+.option('-a, --amount <int>', 'кількість предметів, що повернуться', null)
+.option('-l, --limited', 'повертає лише предмети з обмеженою кількістю використань')
+.action((options) => {
+    let char = getCharacter();
+    
+    if(char.inventory != null){
+        let used_inv = [];
+        if(options.limited){
+            for(let i = 0; i < char.inventory.length; i++){
+                if(char.inventory[i].is_limited){
+                used_inv.push(char.inventory[i])
+                }
+            }
+        }
+        else{
+            used_inv = char.inventory;
+        }
+        const inv_length = used_inv.length;
+        if(inv_length < 1){
+            console.log('Предмети відсутні');
+            return;
+        }
+        let amount;
+        if(options.amount != null){  
+            amount = options.amount;
+            if(amount <= 0){
+            console.log('ПОМИЛКА: некоректне значення кількості(від\'ємне або 0)');
+            return;
+            }
+            if(amount > inv_length){
+                console.log('ПОПЕРЕДЖЕННЯ: вказана кількість перевищує максимальну');
+                amount = inv_length;
+            }
+        }
+        else{
+            amount = inv_length;
+        }
+        for(let i = 0; i < amount; i++){
+        checkAndLog(used_inv[i].item_name, 'ПОПЕРЕДЖЕННЯ: назва предмету не вказана');
+        }
+    }
+    else{
+        console.log('ПОМИЛКА: інвентар відсутній');
+    }
+})
+
 
 
 program.parse()
