@@ -7,7 +7,7 @@ program
 .version('0.0.1')
 .option('-f, --file <string>', 'шлях до JSON файлу')
 
-program.command('identifyPilot')
+program.command('getPilotName') 
 .description('повертає ім\'я персонажа')
 .option('-c, --callsign', 'додатково повертає позивний після імені')
 .action((options) => {
