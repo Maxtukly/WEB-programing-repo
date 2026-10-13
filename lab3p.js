@@ -117,7 +117,13 @@ function getCharacter(){
     let char = defchar;
     const {file} = program.opts();
     if(file){
-        char = JSON.parse(fs.readFileSync(file, 'utf-8'));
+        try{
+            char = JSON.parse(fs.readFileSync(file, 'utf-8'));
+        }
+        catch{
+            console.log('ПОПЕРЕДЖЕННЯ: помилка читання вказаного файлу, використовується файл за замовчуванням')
+        }
+        
     }
     else{
         console.log('ПОПЕРЕДЖЕННЯ: цільовий файл не вказано, використано файл за замовчуванням');
