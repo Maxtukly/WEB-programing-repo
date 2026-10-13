@@ -65,7 +65,51 @@ program.command('getInventory')
     }
 })
 
-
+program.command('descItem')
+.description('повертає повну інформацію про предмет інвентарю')
+.requiredOption('-n, --name <string>', 'назва предмету, обов\'язковий аргумент', null)
+.option('-i, --insensitive', 'ігнорує регістр під час пошуку предмету')
+.action((options) => {
+    if(options.name == null){
+        console.log('ПОМИЛКА: назва цільового предмету не вказана');
+        return;
+    }
+    let target_name = options.name;
+    if(options.insensitive){
+        target_name = target_name.toLowerCase();
+    }
+    let char = getCharacter();
+    const inv = char.inventory;
+    if(inv == null){
+        console.log('ПОМИЛКА: інвентар персонажа відсутній');
+        return;
+    }
+    const inv_length = inv.length;
+    let found = false;
+    for(let i = 0; i < inv_length; i++){
+        let item = inv[i];
+        let item_name = item.item_name;
+        if(options.insensitive){
+            item_name = item_name.toLowerCase();
+        }
+        if(item_name == target_name){
+            found = true;
+            console.log(item.item_name);
+            checkAndLog(item.item_description, 'ПОПЕРЕДЖЕННЯ: опис предмету відсутній');
+            console.log('Кількість використань:');
+            if(item.is_limited){
+            checkAndLog(item.uses, 'ПОПЕРЕДЖЕННЯ: кількість використань не вказана');
+            }
+            else{
+                console.log('Необмежено');
+            }
+        }
+    }
+    if(!found){
+        console.log('ПОПЕРЕДЖЕННЯ: предмету з таким ім\'ям не знайдено');
+    }
+    
+})
 
 program.parse()
 
