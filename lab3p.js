@@ -6,6 +6,7 @@ program
 .name('lab3p')
 .version('0.0.1')
 .option('-f, --file <string>', 'шлях до JSON файлу')
+.description('Це програма для Лаболаторної роботи №3')
 
 program.command('getPilotName') 
 .description('повертає ім\'я персонажа')
@@ -111,6 +112,38 @@ program.command('descItem')
     
 })
 
+program.command('getTalent')
+.description('повертає повну інформацію про талант пілота за номером')
+.requiredOption('-n, --num <number>','номер таланту про який потрібно вивести інформацію', null)
+.action((options) => {
+    if(options.num != null){
+        let char = getCharacter();
+        let i = options.num;
+        i -= 1;
+        if(!Number.isInteger(i)){
+            console.log(`ПОМИЛКА: значення ${options.num} для -n некоректне`);
+            return;
+        }
+        const tal = char.learned_talents;
+        if(tal == null){
+            console.log('ПОМИЛКА: список талантів відсутній');
+            return;
+        }
+        const tal_l = tal.length;
+        if(i <= 0 || i > tal_l){
+            console.log('ПОМИЛКА: талант з таким номером не існує');
+            return;
+            }
+        checkAndLog(tal[i].talent_name, 'ПОПЕРЕДЖЕННЯ: відсутня назва таланту');
+        checkAndLog(tal[i].talent_description, 'ПОПЕРЕДЖЕННЯ: талант немає опису');
+        console.log('Тир:');
+        checkAndLog(tal[i].tier, 'ПОПЕРЕДЖЕННЯ: тир таланту не вказаний');
+    }
+    else{
+        console.log('ПОМИЛКА: номер таланту не вказаний');
+    }
+})
+
 program.parse()
 
 function getCharacter(){
@@ -132,7 +165,7 @@ function getCharacter(){
 }
 
 function checkAndLog(value, warning){
-    if(value){
+    if(value && value != ''){
         console.log(value);
     }
     else{
