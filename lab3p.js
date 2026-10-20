@@ -1,6 +1,7 @@
 import { program } from "commander";
 import fs from "fs";
 import defchar from './RPGPlayer_example.json' with { type: 'json' };
+import { exit } from "process";
 
 program
 .name('lab3p')
@@ -47,7 +48,7 @@ program.command('getInventory')
             amount = options.amount;
             if(amount <= 0){
             console.log('ПОМИЛКА: некоректне значення кількості(від\'ємне або 0)');
-            return;
+            exit(1);
             }
             if(amount > inv_length){
                 console.log('ПОПЕРЕДЖЕННЯ: вказана кількість перевищує максимальну');
@@ -63,6 +64,7 @@ program.command('getInventory')
     }
     else{
         console.log('ПОМИЛКА: інвентар відсутній');
+        exit(1);
     }
 })
 
@@ -73,7 +75,7 @@ program.command('descItem')
 .action((options) => {
     if(options.name == null){
         console.log('ПОМИЛКА: назва цільового предмету не вказана');
-        return;
+        exit(1);
     }
     let target_name = options.name;
     if(options.insensitive){
@@ -83,7 +85,7 @@ program.command('descItem')
     const inv = char.inventory;
     if(inv == null){
         console.log('ПОМИЛКА: інвентар персонажа відсутній');
-        return;
+        exit(1);
     }
     const inv_length = inv.length;
     let found = false;
@@ -122,17 +124,17 @@ program.command('getTalent')
         i -= 1;
         if(!Number.isInteger(i)){
             console.log(`ПОМИЛКА: значення ${options.num} для -n некоректне`);
-            return;
+            exit(1);
         }
         const tal = char.learned_talents;
         if(tal == null){
             console.log('ПОМИЛКА: список талантів відсутній');
-            return;
+            exit(1);
         }
         const tal_l = tal.length;
         if(i <= 0 || i > tal_l){
             console.log('ПОМИЛКА: талант з таким номером не існує');
-            return;
+            exit(1);
             }
         checkAndLog(tal[i].talent_name, 'ПОПЕРЕДЖЕННЯ: відсутня назва таланту');
         checkAndLog(tal[i].talent_description, 'ПОПЕРЕДЖЕННЯ: талант немає опису');
@@ -141,6 +143,7 @@ program.command('getTalent')
     }
     else{
         console.log('ПОМИЛКА: номер таланту не вказаний');
+        exit(1);
     }
 })
 
@@ -154,7 +157,8 @@ function getCharacter(){
             char = JSON.parse(fs.readFileSync(file, 'utf-8'));
         }
         catch{
-            console.log('ПОПЕРЕДЖЕННЯ: помилка читання вказаного файлу, використовується файл за замовчуванням')
+            console.log('ПОМИЛКА: помилка читання вказаного файлу');
+            exit(1);
         }
         
     }
