@@ -132,7 +132,7 @@ program.command('getTalent')
             exit(1);
         }
         const tal_l = tal.length;
-        if(i <= 0 || i > tal_l){
+        if(i < 0 || i > tal_l){
             console.log('ПОМИЛКА: талант з таким номером не існує');
             exit(1);
             }
